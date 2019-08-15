@@ -1,21 +1,36 @@
-﻿using LL.Store.UI.Models;
-using System.Collections.Generic;
+﻿using LL.Store.UI.Data;
+using System.Linq;
 using System.Web.Mvc;
+using LL.Store.UI.Models;
+using System.Collections.Generic;
 
 namespace LL.Store.UI.Controllers
 {
     public class ProdutosController : Controller
     {
+		[HttpGet]
         public ViewResult Index()
         {
-            var produtos = new List<Produto>()
+            IList<Produto> produtos = null;
+
+            using (var ctx = new LNStoreDataContext())
             {
-                new Produto(){Id=1,Nome="Picanha",Preco=70.5m,Qtde=150, Tipo="Alimento"},
-                new Produto(){Id=2,Nome="Pasta de Dente",Preco=9.5m,Qtde=250, Tipo="Higiene"},
-                new Produto(){Id=3,Nome="Desinfetante",Preco=8.99m,Qtde=520, Tipo="Limpeza"}
-            };
+                produtos = ctx.Produtos.ToList();
+            }
 
             return View(produtos);
+        }
+
+		[HttpGet]
+		public ViewResult Add()
+        {
+            return View();
+        }
+
+		[HttpPost]
+		public ActionResult Add(Produto produto)
+        {
+            return RedirectToAction("Index");
         }
     }
 }
