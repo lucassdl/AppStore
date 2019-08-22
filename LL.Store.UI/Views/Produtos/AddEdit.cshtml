@@ -1,0 +1,22 @@
+﻿<h2>Adicionar Produto</h2>
+
+<form method="post">
+    <div>
+        <label for="txtNome">Nome:</label>
+        <input type="text" name="nome" id="txtNome" value="@Model.Nome" autofocus />
+    </div>
+    <div>
+        <label for="txtPreco">Preço:</label>
+        <input type="text" name="preco" value="@Model.Preco" id="txtPreco" />
+    </div>
+    <div>
+        <label for="txtTipo">Tipo:</label>
+        <input type="text" name="tipo" value="@Model.Tipo" id="txtTipo" />
+    </div>
+    <div>
+        <label for="txtQtde">Qtde:</label>
+        <input type="text" name="qtde" value="@Model.Qtde   " id="txtQtde" />
+    </div>
+    <button>Salvar</button>
+    <a href="~/Produtos">Cancelar</a>
+</form>
