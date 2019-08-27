@@ -21,7 +21,7 @@ namespace LL.Store.UI.Controllers
         [HttpGet]
         public ViewResult AddEdit(int? id)
         {
-            Produto produto = null;
+            Produto produto = new Produto();
 
             if (id != null)
                 produto = _ctx.Produtos.Find(id);
@@ -42,12 +42,6 @@ namespace LL.Store.UI.Controllers
             _ctx.SaveChanges();
 
             return RedirectToAction("Index");
-        }
-
-        public ViewResult Edit(int id)
-        {
-            var produto = _ctx.Produtos.Find(id);
-            return View(produto);
         }
 
         public ActionResult DelProduto(int id)
@@ -71,7 +65,5 @@ namespace LL.Store.UI.Controllers
         {
             _ctx.Dispose();
         }
-
-
     }
 }

@@ -1,22 +1,24 @@
 ﻿<h2>Adicionar Produto</h2>
 
 <form method="post">
-    <div>
+    <div class="form-group">
         <label for="txtNome">Nome:</label>
-        <input type="text" name="nome" id="txtNome" value="@Model.Nome" autofocus />
+        <input class="form-control" type="text" name="nome" id="txtNome" value="@Model.Nome" autofocus />
     </div>
-    <div>
+    <div class="form-group">
         <label for="txtPreco">Preço:</label>
-        <input type="text" name="preco" value="@Model.Preco" id="txtPreco" />
+        <input class="form-control" type="text" name="preco" value="@Model.Preco" id="txtPreco" />
     </div>
-    <div>
+    <div class="form-group">
         <label for="txtTipo">Tipo:</label>
-        <input type="text" name="tipo" value="@Model.Tipo" id="txtTipo" />
+        <input class="form-control" type="text" name="tipo" value="@Model.Tipo" id="txtTipo" />
     </div>
-    <div>
+    <div class="form-group">
         <label for="txtQtde">Qtde:</label>
-        <input type="text" name="qtde" value="@Model.Qtde   " id="txtQtde" />
+        <input class="form-control" type="text" name="qtde" value="@Model.Qtde   " id="txtQtde" />
     </div>
-    <button>Salvar</button>
-    <a href="~/Produtos">Cancelar</a>
+    <div class="form-group">
+        <button class="btn btn-outline-secondary">Salvar</button>
+        <a class="btn btn-outline-info" href="~/Produtos">Cancelar</a>
+    </div>
 </form>
