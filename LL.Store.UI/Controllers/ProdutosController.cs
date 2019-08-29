@@ -26,6 +26,9 @@ namespace LL.Store.UI.Controllers
             if (id != null)
                 produto = _ctx.Produtos.Find(id);
 
+            var tipos = _ctx.TipoDeProdutos.ToList();
+            ViewBag.Tipos = tipos;
+
             return View(produto);
         }
 
