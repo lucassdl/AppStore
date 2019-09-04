@@ -35,16 +35,21 @@ namespace LL.Store.UI.Controllers
         [HttpPost]
         public ActionResult AddEdit(Produto produto)
         {
-            //TODO: Validar
+            if (ModelState.IsValid)
+            {
+                if (produto.Id == 0)
+                    _ctx.Produtos.Add(produto);
+                else
+                    _ctx.Entry(produto).State = EntityState.Modified;
 
-            if (produto.Id == 0)
-                _ctx.Produtos.Add(produto);
-            else
-                _ctx.Entry(produto).State = EntityState.Modified;
+                _ctx.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-            _ctx.SaveChanges();
+            var tipos = _ctx.TipoDeProdutos.ToList();
+            ViewBag.Tipos = tipos;
 
-            return RedirectToAction("Index");
+            return View(produto);
         }
 
         public ActionResult DelProduto(int id)
