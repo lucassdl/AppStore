@@ -6,6 +6,7 @@ using System.Data.Entity;
 
 namespace LL.Store.UI.Controllers
 {
+    [Authorize]
     public class ProdutosController : Controller
     {
         private readonly LNStoreDataContext _ctx = new LNStoreDataContext();

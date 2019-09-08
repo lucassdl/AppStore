@@ -1,4 +1,5 @@
-﻿using LL.Store.UI.Models;
+﻿using LL.Store.UI.Infra.Helpers;
+using LL.Store.UI.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 
@@ -25,6 +26,14 @@ namespace LL.Store.UI.Data
             };
 
             context.Produtos.AddRange(produtos);
+
+            context.Usuarios.Add(new Usuario()
+            {
+                Nome = "Lucas Lima",
+                Email = "lucas_sdl@hotmail.com",
+                Senha = "123456".Encrypt()
+            }); ; ;
+
             context.SaveChanges();
         }
     }
