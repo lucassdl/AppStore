@@ -9,7 +9,7 @@ namespace LL.Store.UI.Controllers
     [Authorize]
     public class ProdutosController : Controller
     {
-        private readonly LNStoreDataContext _ctx = new LNStoreDataContext();
+        private readonly LLStoreDataContext _ctx = new LLStoreDataContext();
 
         [HttpGet]
         public ViewResult Index()

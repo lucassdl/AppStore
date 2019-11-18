@@ -1,9 +1,8 @@
-﻿using LL.Store.UI.Infra.Helpers;
-using LL.Store.UI.Models;
+﻿using LL.Store.Domain.Entities;
 using System.Collections.Generic;
 using System.Data.Entity;
 
-namespace LL.Store.UI.Data
+namespace LL.Store.Data.EF
 {
     internal class DbInitializer : CreateDatabaseIfNotExists<LLStoreDataContext>
     {
@@ -32,7 +31,7 @@ namespace LL.Store.UI.Data
                 Nome = "Lucas Lima",
                 Email = "lucas_sdl@hotmail.com",
                 Senha = "123456".Encrypt()
-            }); ; ;
+            });
 
             context.SaveChanges();
         }

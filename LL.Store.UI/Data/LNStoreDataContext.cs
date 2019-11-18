@@ -3,9 +3,9 @@ using LL.Store.UI.Models;
 
 namespace LL.Store.UI.Data
 {
-    public class LNStoreDataContext : DbContext
+    public class LLStoreDataContext : DbContext
     {
-        public LNStoreDataContext() : base("StoreConn")
+        public LLStoreDataContext() : base("StoreConn")
         {
             Database.SetInitializer(new DbInitializer());
         }

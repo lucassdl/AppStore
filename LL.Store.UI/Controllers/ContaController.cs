@@ -9,7 +9,7 @@ namespace LL.Store.UI.Controllers
 {
     public class ContaController : Controller
     {
-        private readonly LNStoreDataContext _ctx = new LNStoreDataContext();
+        private readonly LLStoreDataContext _ctx = new LLStoreDataContext();
 
         public ActionResult Login(string returnUrl)
         {
