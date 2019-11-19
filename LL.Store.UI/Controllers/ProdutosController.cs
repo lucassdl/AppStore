@@ -1,8 +1,8 @@
-﻿using LL.Store.UI.Data;
-using LL.Store.UI.Models;
+﻿using LL.Store.Data.EF;
+using LL.Store.Domain.Entities;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
-using System.Data.Entity;
 
 namespace LL.Store.UI.Controllers
 {

@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace LL.Store.Domain.Entities
+namespace LL.Store.Domain.Helpers
 {
     public static class StringHelpers
     {

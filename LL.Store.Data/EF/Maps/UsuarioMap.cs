@@ -1,15 +1,11 @@
 ﻿using LL.Store.Domain.Entities;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LL.Store.Data.EF.Maps
 {
-    public class UsuarioMap:EntityTypeConfiguration<Usuario>
+    public class UsuarioMap : EntityTypeConfiguration<Usuario>
     {
         public UsuarioMap()
         {
@@ -28,7 +24,11 @@ namespace LL.Store.Data.EF.Maps
             Property(prod => prod.Email)
                  .HasColumnType("varchar")
                  .HasMaxLength(80)
-                 .IsRequired();
+                 .IsRequired()
+                 .HasColumnAnnotation(
+                    IndexAnnotation.AnnotationName,
+                    new IndexAnnotation(new IndexAttribute( "UQ_dbo.Usuario.Email") { IsUnique = true })
+                 );
 
             Property(prod => prod.Senha)
                 .HasColumnType("char")

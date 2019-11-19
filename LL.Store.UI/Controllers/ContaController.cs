@@ -1,5 +1,5 @@
-﻿using LL.Store.UI.Data;
-using LL.Store.UI.Infra.Helpers;
+﻿using LL.Store.Data.EF;
+using LL.Store.Domain.Helpers;
 using LL.Store.UI.Models;
 using System.Linq;
 using System.Web.Mvc;

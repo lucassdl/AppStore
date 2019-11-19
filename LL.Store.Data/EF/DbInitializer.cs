@@ -1,4 +1,5 @@
 ﻿using LL.Store.Domain.Entities;
+using LL.Store.Domain.Helpers;
 using System.Collections.Generic;
 using System.Data.Entity;
 
