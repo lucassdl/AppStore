@@ -1,7 +1,7 @@
-﻿using LL.Store.Data.EF;
+﻿using LL.Store.Data.EF.Repositories;
+using LL.Store.Domain.Contracts.Repositories;
 using LL.Store.Domain.Helpers;
 using LL.Store.UI.Models;
-using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -9,7 +9,7 @@ namespace LL.Store.UI.Controllers
 {
     public class ContaController : Controller
     {
-        private readonly LLStoreDataContext _ctx = new LLStoreDataContext();
+        private readonly IUsuarioRepository _usuarioRepository = new UsuarioRepositoryEF();
 
         public ActionResult Login(string returnUrl)
         {
@@ -20,7 +20,7 @@ namespace LL.Store.UI.Controllers
         [HttpPost]
         public ActionResult Login(LoginVM model)
         {
-            var usuario = _ctx.Usuarios.FirstOrDefault(u => u.Email.ToLower() == model.Email.ToLower());
+            var usuario = _usuarioRepository.Get(model.Email);
 
             if (usuario == null)
             {
@@ -58,7 +58,7 @@ namespace LL.Store.UI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            _ctx.Dispose();
+            _usuarioRepository.Dispose();
         }
     }
 }

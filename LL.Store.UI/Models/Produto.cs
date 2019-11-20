@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LL.Store.UI.Models
@@ -16,7 +15,7 @@ namespace LL.Store.UI.Models
         public decimal Preco { get; set; }
 
         [Column("Quantidade")]
-        public Int16 Qtde { get; set; }
+        public short Qtde { get; set; }
 
         public int TipoDeProdutoId { get; set; }
 

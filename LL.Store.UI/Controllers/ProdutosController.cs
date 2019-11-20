@@ -1,7 +1,9 @@
-﻿using LL.Store.Data.EF;
+﻿using LL.Store.Data.EF.Repositories;
+using LL.Store.Domain.Contracts.Repositories;
 using LL.Store.Domain.Entities;
-using System.Data.Entity;
-using System.Linq;
+using LL.Store.UI.ViewModels.Produtos.AddEdit;
+using LL.Store.UI.ViewModels.Produtos.AddEdit.Maps;
+using LL.Store.UI.ViewModels.Produtos.Index.Maps;
 using System.Web.Mvc;
 
 namespace LL.Store.UI.Controllers
@@ -9,12 +11,13 @@ namespace LL.Store.UI.Controllers
     [Authorize]
     public class ProdutosController : Controller
     {
-        private readonly LLStoreDataContext _ctx = new LLStoreDataContext();
+        private readonly IProdutoRepository _produtoRepository = new ProdutoRepositoryEF();
+        private readonly ITipoDeProdutoRepository _tipoDeProdutoRepository = new TipoDeProdutoRepositoryEF();
 
         [HttpGet]
         public ViewResult Index()
         {
-            var produtos = _ctx.Produtos.ToList();
+            var produtos = _produtoRepository.Get().ToProdutoIndexVM();
 
             return View(produtos);
         }
@@ -22,32 +25,33 @@ namespace LL.Store.UI.Controllers
         [HttpGet]
         public ViewResult AddEdit(int? id)
         {
-            Produto produto = new Produto();
+            var produto = new ProdutoAddEditVM();
 
             if (id != null)
-                produto = _ctx.Produtos.Find(id);
+                produto = _produtoRepository.Get((int)id).ToProdutoAddEditVM();
 
-            var tipos = _ctx.TipoDeProdutos.ToList();
+            var tipos = _tipoDeProdutoRepository.Get();
             ViewBag.Tipos = tipos;
 
             return View(produto);
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Produto produto)
+        public ActionResult AddEdit(ProdutoAddEditVM produtoVM)
         {
+            var produto = produtoVM.ToProduto();
+
             if (ModelState.IsValid)
             {
                 if (produto.Id == 0)
-                    _ctx.Produtos.Add(produto);
+                    _produtoRepository.Add(produto);
                 else
-                    _ctx.Entry(produto).State = EntityState.Modified;
+                    _produtoRepository.Edit(produto);
 
-                _ctx.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            var tipos = _ctx.TipoDeProdutos.ToList();
+            var tipos = _tipoDeProdutoRepository.Get();
             ViewBag.Tipos = tipos;
 
             return View(produto);
@@ -55,24 +59,20 @@ namespace LL.Store.UI.Controllers
 
         public ActionResult DelProduto(int id)
         {
-            var produto = _ctx.Produtos.Find(id);
+            var produto = _produtoRepository.Get(id);
 
             if (produto == null)
-            {
                 return HttpNotFound();
-            }
             else
-            {
-                _ctx.Produtos.Remove(produto);
-                _ctx.SaveChanges();
-            }
+                _produtoRepository.Remove(produto);
 
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            _ctx.Dispose();
+            _produtoRepository.Dispose();
+            _tipoDeProdutoRepository.Dispose();
         }
     }
 }

@@ -48,7 +48,5 @@ namespace LL.Store.Data.EF.Repositories
         {
             _ctx.Dispose();
         }
-
-        
     }
 }

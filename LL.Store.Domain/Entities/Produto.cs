@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LL.Store.Domain.Entities
+﻿namespace LL.Store.Domain.Entities
 {
     public class Produto : Entity
     {
@@ -8,7 +6,7 @@ namespace LL.Store.Domain.Entities
 
         public decimal Preco { get; set; }
 
-        public Int16 Qtde { get; set; }
+        public short Qtde { get; set; }
 
         public int TipoDeProdutoId { get; set; }
 

@@ -10,5 +10,6 @@ namespace LL.Store.Domain.Contracts.Repositories
         IEnumerable<T> Get();
         T Get(int id);
         void Remove(T entity);
+        void Dispose();
     }
 }
