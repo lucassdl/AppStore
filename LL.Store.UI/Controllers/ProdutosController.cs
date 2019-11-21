@@ -1,6 +1,4 @@
-﻿using LL.Store.Data.EF.Repositories;
-using LL.Store.Domain.Contracts.Repositories;
-using LL.Store.Domain.Entities;
+﻿using LL.Store.Domain.Contracts.Repositories;
 using LL.Store.UI.ViewModels.Produtos.AddEdit;
 using LL.Store.UI.ViewModels.Produtos.AddEdit.Maps;
 using LL.Store.UI.ViewModels.Produtos.Index.Maps;
@@ -11,8 +9,14 @@ namespace LL.Store.UI.Controllers
     [Authorize]
     public class ProdutosController : Controller
     {
-        private readonly IProdutoRepository _produtoRepository = new ProdutoRepositoryEF();
-        private readonly ITipoDeProdutoRepository _tipoDeProdutoRepository = new TipoDeProdutoRepositoryEF();
+        private readonly IProdutoRepository _produtoRepository;
+        private readonly ITipoDeProdutoRepository _tipoDeProdutoRepository;
+        
+        public ProdutosController(IProdutoRepository produtoRepository, ITipoDeProdutoRepository tipoDeProdutoRepository)
+        {
+            _produtoRepository = produtoRepository;
+            _tipoDeProdutoRepository = tipoDeProdutoRepository;
+        }
 
         [HttpGet]
         public ViewResult Index()

@@ -1,7 +1,6 @@
-﻿using LL.Store.Data.EF.Repositories;
-using LL.Store.Domain.Contracts.Repositories;
+﻿using LL.Store.Domain.Contracts.Repositories;
 using LL.Store.Domain.Helpers;
-using LL.Store.UI.Models;
+using LL.Store.UI.ViewModels.Conta.Login;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -9,7 +8,12 @@ namespace LL.Store.UI.Controllers
 {
     public class ContaController : Controller
     {
-        private readonly IUsuarioRepository _usuarioRepository = new UsuarioRepositoryEF();
+        private readonly IUsuarioRepository _usuarioRepository;
+
+        public ContaController(IUsuarioRepository usuarioRepository)
+        {
+            _usuarioRepository = usuarioRepository;
+        }
 
         public ActionResult Login(string returnUrl)
         {
