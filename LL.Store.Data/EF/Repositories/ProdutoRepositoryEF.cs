@@ -7,6 +7,11 @@ namespace LL.Store.Data.EF.Repositories
 {
     public class ProdutoRepositoryEF : RepositoryEF<Produto>, IProdutoRepository
     {
+
+        public ProdutoRepositoryEF(LLStoreDataContextEF ctx) : base(ctx)
+        {
+        }
+
         public IEnumerable<Produto> GetByNameContains(string contains)
         {
             return _ctx.Produtos.Where(p => p.Nome.Contains(contains));

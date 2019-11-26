@@ -62,7 +62,6 @@ namespace LL.Store.UI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            _usuarioRepository.Dispose();
         }
     }
 }

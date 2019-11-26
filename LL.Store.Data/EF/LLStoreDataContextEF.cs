@@ -3,9 +3,9 @@ using System.Data.Entity;
 
 namespace LL.Store.Data.EF
 {
-    public class LLStoreDataContext : DbContext
+    public class LLStoreDataContextEF : DbContext
     {
-        public LLStoreDataContext() : base("StoreConn")
+        public LLStoreDataContextEF() : base("StoreConn")
         {
             Database.SetInitializer(new DbInitializer());
         }

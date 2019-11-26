@@ -9,7 +9,12 @@ namespace LL.Store.Data.EF.Repositories
 {
     public class RepositoryEF<T> : IDisposable, IRepository<T> where T : Entity
     {
-        protected LLStoreDataContext _ctx = new LLStoreDataContext();
+        protected LLStoreDataContextEF _ctx;
+
+        public RepositoryEF(LLStoreDataContextEF ctx)
+        {
+            _ctx = ctx;
+        }
 
         public IEnumerable<T> Get()
         {
@@ -46,7 +51,6 @@ namespace LL.Store.Data.EF.Repositories
 
         public void Dispose()
         {
-            _ctx.Dispose();
         }
     }
 }

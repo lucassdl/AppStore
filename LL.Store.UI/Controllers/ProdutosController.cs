@@ -11,7 +11,7 @@ namespace LL.Store.UI.Controllers
     {
         private readonly IProdutoRepository _produtoRepository;
         private readonly ITipoDeProdutoRepository _tipoDeProdutoRepository;
-        
+
         public ProdutosController(IProdutoRepository produtoRepository, ITipoDeProdutoRepository tipoDeProdutoRepository)
         {
             _produtoRepository = produtoRepository;
@@ -75,8 +75,6 @@ namespace LL.Store.UI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            _produtoRepository.Dispose();
-            _tipoDeProdutoRepository.Dispose();
         }
     }
 }

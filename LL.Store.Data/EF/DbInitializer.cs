@@ -5,9 +5,9 @@ using System.Data.Entity;
 
 namespace LL.Store.Data.EF
 {
-    internal class DbInitializer : CreateDatabaseIfNotExists<LLStoreDataContext>
+    internal class DbInitializer : CreateDatabaseIfNotExists<LLStoreDataContextEF>
     {
-        protected override void Seed(LLStoreDataContext context)
+        protected override void Seed(LLStoreDataContextEF context)
         {
             var alimento = new TipoDeProduto() { Nome = "Alimento" };
             var higiene = new TipoDeProduto() { Nome = "Higiene" };
